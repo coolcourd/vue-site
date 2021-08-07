@@ -1,3 +1,31 @@
+const getPage = () => {
+  switch(window.location.pathname) {
+    case '/' :
+      return 'home'
+      break;
+    case '/services/' :
+      return 'services'
+      break;
+    case '/portfolio/' :
+      return 'portfolio'
+      break;
+    case '/contact/' :
+      return 'contact'
+      break;
+      case '/services' :
+      return 'services'
+      break;
+    case '/portfolio' :
+      return 'portfolio'
+      break;
+    case '/contact' :
+      return 'contact'
+      break;
+    default:
+      return 'home'
+  } 
+}
+
 Vue.component('button-counter', {
     data() {
       return {
@@ -5,6 +33,36 @@ Vue.component('button-counter', {
       }
     },
     template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+  })
+
+  Vue.component('page-home', {
+    template: '<h1>Home</h1>'
+  })
+
+  Vue.component('page-services', {
+    template: '<h1>Services</h1>'
+  })
+
+  Vue.component('page-portfolio', {
+    template: '<h1>Portfolio</h1>'
+  })
+
+  Vue.component('page-contact', {
+    template: '<h1>Contact</h1>'
+  })
+
+  Vue.component('page-content', {
+    data() {
+      return {
+        page: getPage()
+      }
+    },
+    template: `<div>
+    <page-home v-show="page==='home'"></page-home>
+    <page-services v-show="page==='services'"></page-services>
+    <page-portfolio v-show="page==='portfolio'"></page-portfolio>
+    <page-contact v-show="page==='contact'"></page-contact>
+</div>`
   })
 
 
@@ -74,13 +132,13 @@ Vue.component('button-counter', {
         <div class="sm:hidden" id="mobile-menu" v-show="mobileOpen">
           <div class="px-2 pt-2 pb-3 space-y-1">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a href="/" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Home</a>
+            <a href="/" class="${window.location.pathname === '/' ? 'bg-gray-900 text-white' :  'hover:bg-gray-700 hover:text-white text-gray-300'}  block px-3 py-2 rounded-md text-base font-medium">Home</a>
       
-            <a href="/services" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Services</a>
+            <a href="/services" class="${window.location.pathname.match('/services') ? 'bg-gray-900 text-white' :  'hover:bg-gray-700 hover:text-white text-gray-300'}  block px-3 py-2 rounded-md text-base font-medium">Services</a>
       
-            <a href="/portfolio" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Portfolio</a>
+            <a href="/portfolio" class="${window.location.pathname.match('/portfolio') ? 'bg-gray-900 text-white' :  'hover:bg-gray-700 hover:text-white text-gray-300'}  block px-3 py-2 rounded-md text-base font-medium">Portfolio</a>
       
-            <a href="/contact" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+            <a href="/contact" class="${window.location.pathname.match('/contact') ? 'bg-gray-900 text-white' :  'hover:bg-gray-700 hover:text-white text-gray-300'}  block px-3 py-2 rounded-md text-base font-medium">Contact</a>
           </div>
         </div>
       </nav>
