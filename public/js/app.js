@@ -58,10 +58,10 @@ Vue.component('button-counter', {
       }
     },
     template: `<div>
-    <page-home v-show="page==='home'"></page-home>
-    <page-services v-show="page==='services'"></page-services>
-    <page-portfolio v-show="page==='portfolio'"></page-portfolio>
-    <page-contact v-show="page==='contact'"></page-contact>
+    <page-home v-if="page==='home'"></page-home>
+    <page-services v-if="page==='services'"></page-services>
+    <page-portfolio v-if="page==='portfolio'"></page-portfolio>
+    <page-contact v-if="page==='contact'"></page-contact>
 </div>`
   })
 

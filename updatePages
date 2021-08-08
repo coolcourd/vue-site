@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cp public/index.html public/contact/index.html
+cp public/index.html public/portfolio/index.html
+cp public/index.html public/services/index.html
+cp public/index.html public/404.html
